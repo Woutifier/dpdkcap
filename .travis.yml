@@ -1,1 +1,7 @@
 language: c
+addons:
+  apt:
+    packages:
+    - libncurses-dev
+script: make
+
