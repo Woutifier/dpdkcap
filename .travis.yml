@@ -3,6 +3,13 @@ addons:
   apt:
     packages:
     - libncurses-dev
-    - dpdk
-script: make
+before_install:
+  - wget http://fast.dpdk.org/rel/dpdk-16.11.1.tar.xz
+  - tar -axvf dpdk-16.11.1.tar.xz
+  - cd dpdk-stable-16.11.1
+  - make install T=x86_64-native-linuxapp-gcc
+script:
+  - export RTE_SDK=$TRAVIS_BUILD_DIR/dpdk-stable-16.11.1
+  - export RTE_TARGET=x86_64-native-linuxapp-gcc
+  - make
 
