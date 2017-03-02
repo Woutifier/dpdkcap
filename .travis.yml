@@ -16,6 +16,7 @@ before_install:
   - export RTE_KERNELDIR=/lib/modules/3.13.0-40-generic/build
   - make install T=x86_64-native-linuxapp-gcc
 script:
+  - cd $TRAVIS_BUILD_DIR
   - export RTE_SDK=$HOME/dpdk
   - export RTE_TARGET=x86_64-native-linuxapp-gcc
   - make
