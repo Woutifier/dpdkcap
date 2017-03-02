@@ -5,16 +5,18 @@ addons:
     - libncurses-dev
     - linux-headers-3.13.0-40-generic
 
+cache:
+  directories:
+    - $HOME/dpdk
+
 before_install:
-  - echo $(pwd)
-  - ls
   - wget http://fast.dpdk.org/rel/dpdk-16.11.1.tar.xz
   - tar -axvf dpdk-16.11.1.tar.xz
   - cd dpdk-stable-16.11.1
   - export RTE_KERNELDIR=/lib/modules/3.13.0-40-generic/build
-  - make install T=x86_64-native-linuxapp-gcc
+  - make install T=x86_64-native-linuxapp-gcc DESTDIR=$HOME/dpdk
 script:
-  - export RTE_SDK=$TRAVIS_BUILD_DIR/dpdk-stable-16.11.1
+  - export RTE_SDK=$HOME/dpdk
   - export RTE_TARGET=x86_64-native-linuxapp-gcc
   - make
 
