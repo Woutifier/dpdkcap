@@ -8,6 +8,7 @@ before_install:
   - wget http://fast.dpdk.org/rel/dpdk-16.11.1.tar.xz
   - tar -axvf dpdk-16.11.1.tar.xz
   - cd dpdk-stable-16.11.1
+  - export RTE_KERNELDIR=/lib/modules/$(uname -r)/build
   - make config T=x86_64-native-linuxapp-gcc && make install T=x86_64-native-linuxapp-gcc
 script:
   - export RTE_SDK=$TRAVIS_BUILD_DIR/dpdk-stable-16.11.1
